@@ -7,5 +7,7 @@
     <string name="home_welcome_message">[Home Welcome Message]!</string>
     <string name="home_list">[Home Title]!</string>
     <string name="contagious_title">[Contagious Title]</string>
+    <string name="barcode_gen_title">[Barcode Gen View Title]</string>
+    <string name="generate">Generate!</string>
 
 </resources>
