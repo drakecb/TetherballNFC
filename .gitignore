@@ -1,6 +1,6 @@
-HatfieldHallApp/bin/*
-HatfieldHallApp/gen/*
-HatfieldHallTest/gen/*
+Contagion/bin/*
+Contagion/gen/*
+
 
 *.pydevproject
 .project
