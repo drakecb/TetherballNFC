@@ -4,8 +4,8 @@ package com.contagion;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 
 import com.onbarcode.barcode.android.AndroidColor;
 import com.onbarcode.barcode.android.AndroidFont;
@@ -14,24 +14,20 @@ import com.onbarcode.barcode.android.IBarcode;
 
 public class BarcodeGen extends View
 {
-//	private static String data;
-	private Button generateBtn;
+	
+//	private Button generateBtn;
+	
 	public BarcodeGen(Context context){
 		super(context);
-		
-//		this.data = "1234567";
-		generateBtn = new Button(context);
-		
-		
 	}
 	
-//	public BarcodeGen(Context context, AttributeSet attributeSet){
-//		super(context);
-//	}
+	public BarcodeGen(Context context, AttributeSet attrs){
+		super(context, attrs);
+	}
 	
-//	public BarcodeGen(Context context, AttributeSet attributeSet, int defStyle){
-//		super(context);
-//	}
+	public BarcodeGen(Context context, AttributeSet attrs, int defStyle){
+		super(context, attrs, defStyle);
+	}
 	
 	
 	@Override
@@ -47,7 +43,7 @@ public class BarcodeGen extends View
 	private static void testEAN8(Canvas canvas) throws Exception
     {
         EAN8 barcode = new EAN8();
-        
+        System.out.println("Gets to testEAN8");
         /*
            EAN 8 Valid data char set:
                 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 (Digits)

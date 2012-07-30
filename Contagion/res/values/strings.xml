@@ -8,6 +8,6 @@
     <string name="home_list">[Home Title]!</string>
     <string name="contagious_title">[Contagious Title]</string>
     <string name="barcode_gen_title">[Barcode Gen View Title]</string>
-    <string name="generate">Generate!</string>
+    <string name="generate">generate</string>
 
 </resources>

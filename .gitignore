@@ -1,6 +1,6 @@
 Contagion/bin/*
 Contagion/gen/*
-
+Contagion/AndroidManifest.out.xml
 
 *.pydevproject
 .project
