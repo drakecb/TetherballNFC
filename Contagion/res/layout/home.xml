@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
+    android:layout_height="match_parent" >
+
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -30,10 +31,26 @@
                 android:id="@+id/generateBtn"
                 android:layout_width="wrap_content"
                 android:layout_gravity="right"
-                android:text="generate"
+                android:text="@string/generate"
                 android:minWidth="100dip" />
 
         </GridLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <SurfaceView
+                android:id="@+id/surfaceView1"
+                android:layout_width="match_parent"
+                android:layout_height="368dp"
+                
+                android:visibility="visible" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
