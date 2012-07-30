@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="lib" path="libs/OnBarcode.AndroidBarcode.jar"/>
+	<classpathentry kind="lib" path="C:/Users/drakecb/Documents/Tetherball/nfc/Contagion/libs/JBARS/lib/jai_codec.jar"/>
+	<classpathentry kind="lib" path="C:/Users/drakecb/Documents/Tetherball/nfc/Contagion/libs/JBARS/lib/JBARS.jar" sourcepath="libs/JBARS/src"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

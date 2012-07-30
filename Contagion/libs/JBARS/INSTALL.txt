@@ -1,0 +1,24 @@
+You can use JBars in 3 modes: 
+
+	- As a Commandline Utility
+	- As a Java API
+	- As Servlet
+
+[Commandline Utility]
+
+Uncompress JBars.zip in your directory of choice.
+To use JBars commandline barcode generator open a terminal (cmd.exe in windows, xterm or similar in unix/mac).
+In the commandline environment go to the bin subdirectory into the directory where you installed JBars.
+Execute BarcodeGenerator.bat or BarcodeGenerator.sh if you are in windows or in unix/mac and follow the instructions.
+
+[Java API]
+
+Uncompress JBars.zip in your directory of choice.
+In the src subdirectory you have the java sources. The ajva package is org.jbars.
+
+[Servlet]
+
+Uncompress JBars.zip in your directory of choice.
+In the root directory of your JBars instalarion you have JBars.war that is the J2EE web application you have to install in a J2EE Servlet compliant container (Apache Tomcat for instance).
+There is a example html form at /index.html and the url mapped to the servlet is /BarcodeServlet
+	

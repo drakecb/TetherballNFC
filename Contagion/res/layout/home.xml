@@ -11,24 +11,29 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
-
+
             <EditText
                 android:id="@+id/barcodeData"
+                android:layout_width="209dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="fill_horizontal"
-                android:ems="7" android:inputType="number">
+                android:ems="7"
+                android:inputType="number" >
+
+                <requestFocus
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <requestFocus />
             </EditText>
-
+
             <Button
                 android:id="@+id/generateBtn"
-                android:layout_gravity="right" />
-        </GridLayout>
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:text="generate"
+                android:minWidth="100dip" />
 
-        <com.contagion.BarcodeGen
-            android:id="@+id/barcodeGen1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        </GridLayout>
 
     </LinearLayout>
 

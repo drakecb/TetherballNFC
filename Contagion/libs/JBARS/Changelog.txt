@@ -1,0 +1,33 @@
+02-09-2006
+----------
+
+[FIX] Fixed commandline barcode generator so that the image is generated
+      according to fontName, and fontStyle parameters. 
+[FIX] Fixed commandline barcode generator windows .bat script so that the 
+	  parameters are really passed to the program.
+
+09-11-2005
+----------
+
+[FIX] Fixed quiet zone size calculation
+
+[FIX] Fixed the show-text/don't-show-text logic, for some barcodes it was 
+      inverted
+
+[NEW] Added the option to set manually the quiet zone width
+
+[NEW] Modified white-black bar ratio to 3:1 instead of 2:1 for CODE93 and
+      Interleaved 2 of 5 so its behaviour when the image is scaled it is much
+      better. Besides ratio 3:1 is supported by the barcodes standars
+	
+
+1-11-2005
+---------
+
+[FIX] Fixed bug while generationg Code 128 Barcode that cointais non alphanumeric
+characters.
+
+[FIX] Fixed windows script to include classpath in the "widnows style" it was
+writen to use the "unix style"
+
+
