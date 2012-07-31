@@ -1,15 +1,24 @@
 package com.contagion;
 
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,12 +32,12 @@ public class HomeActivity extends Activity {
 	 private EditText barcodeDataInputField; 		//TESTING COMPONENT:  allows barcode values to be input
 	 private Button generateBtn;		//TESTING COMPTONENT:  allows values in barcodeId to be submitted for barcode generation
 	 private String data;
-	 private BarcodeGen barcodeGen;
 	 private SurfaceView surfaceView;
 	 private SurfaceHolder surfaceHolder;
 	 private Callback callback;
+	 private RectF rect;
 	 private LinearLayout linearLayout2;
-
+	 
 	 
 
 	@Override
@@ -36,7 +45,8 @@ public class HomeActivity extends Activity {
 	{
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.home);
-//	    setContentView(new BarcodeGen(this));	
+	    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+	    
 	    
 	    barcodeDataInputField = (EditText) findViewById(R.id.barcodeData);
 	    generateBtn = (Button) findViewById(R.id.generateBtn);
@@ -44,31 +54,36 @@ public class HomeActivity extends Activity {
 	    surfaceView = (SurfaceView)findViewById(R.id.surfaceView1);
 	    surfaceHolder = surfaceView.getHolder();
 
-	    data ="0000000";
-	    generateBarcode();
-
+	    
+//	    data ="0000000";
+//	    generateBarcode();
+	    
+	    
 	    generateBtn.setOnClickListener(new OnClickListener(){
 	    	
 	    	public void onClick(View arg0) {
 	    		
-	    		
 	    		data = barcodeDataInputField.getText().toString();
 	    		System.out.println(data);
-	    		surfaceHolder.removeCallback(callback);
+//	    		surfaceHolder.removeCallback(callback);
+	    		linearLayout2.removeView(surfaceView);
 	    		generateBarcode();
+	    		
+	    		linearLayout2.addView(surfaceView, 0);
+	    		
 	    		
 	    	}
 	    });
 
 	}
-	    
 	
+		
 	private void generateBarcode(){
 		
-		System.out.println("enters gen barcode");
+		System.out.println("Enters:\tGENERATE_BARCODE");
 		surfaceHolder.addCallback(new SurfaceHolder.Callback() {
 			public void surfaceCreated(SurfaceHolder holder) {
-				System.out.println("NEW SURFACE!");
+				System.out.println("Enters:\tSURFACE_CREATED");
 				Canvas can = null;
 				try {
 //					surfaceHolder
@@ -85,28 +100,14 @@ public class HomeActivity extends Activity {
 						holder.unlockCanvasAndPost(can);
 					}
 				}
+				System.out.println("Exits:\tSURFACE_CREATED");
 			}
 
 			public void surfaceChanged(SurfaceHolder holder, int format,
 					int width, int height) {
-				System.out.println("ALTERED SURFACE!");
-				Canvas can = null;
-				try {
-					surfaceHolder = holder;
-					can = surfaceHolder.lockCanvas(null);
-					synchronized(holder) {
-						drawEAN8(can);
-
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					if(can != null) {
-						holder.unlockCanvasAndPost(can);
-					}
-				}
-
+				System.out.println("Enters:\tSURFACE_CHANGED");
+				holder.setFormat(format);
+				System.out.println("Exits:\tSURFACE_CHANGED");
 			}
 
 			public void surfaceDestroyed(SurfaceHolder holder) {
@@ -115,10 +116,12 @@ public class HomeActivity extends Activity {
 			}
 		});
 		
+		System.out.println("Exitss:\tGENERATE_BARCODE");
 	}
 	
 	
 	
+	@SuppressWarnings("deprecation")
 	private void drawEAN8(Canvas canvas) throws Exception
     {
 		canvas.restore();
@@ -140,27 +143,29 @@ public class HomeActivity extends Activity {
         // space between barcode and supplement barcode (in pixel)
         barcode.setSupSpace(15);
         */
-
+        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
         // Unit of Measure, pixel, cm, or inch
         barcode.setUom(IBarcode.UOM_PIXEL);
+//        barcode.setRotate(display.getRotation());
         // barcode bar module width (X) in pixel
-        barcode.setX(1f);
+        barcode.setX(4f);
         // barcode bar module height (Y) in pixel
-        barcode.setY(45f);
-
+        barcode.setY(180f);
+//        barcode.setBarAlignment(2);
         // barcode image margins
         barcode.setLeftMargin(10f);
         barcode.setRightMargin(10f);
         barcode.setTopMargin(10f);
         barcode.setBottomMargin(10f);
 
+//        barcode.setRotate(getRequestedOrientation());
         // barcode image resolution in dpi
-        barcode.setResolution(72);
+        barcode.setResolution(display.getWidth());
 
         // disply barcode encoding data below the barcode
         barcode.setShowText(true);
         // barcode encoding data font style
-        barcode.setTextFont(new AndroidFont("Arial", 0, 10));
+        barcode.setTextFont(new AndroidFont("Arial", 0, 14));
         // space between barcode and barcode encoding data
         barcode.setTextMargin(6);
         barcode.setTextColor(AndroidColor.black);
@@ -172,7 +177,12 @@ public class HomeActivity extends Activity {
         /*
         specify your barcode drawing area
 	    */
-	    RectF bounds = new RectF(30, 30, 0, 0);
+        float xCenter = linearLayout2.getRight()-linearLayout2.getLeft();
+        float yCenter = linearLayout2.getBottom()-linearLayout2.getTop();
+	    RectF bounds = new RectF(xCenter / 8, yCenter / 4, (float) (xCenter)/2, (float) (yCenter));
+//	    rect.c
+//	    this.
+	    
         barcode.drawBarcode(canvas, bounds);
     }
 	
