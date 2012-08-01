@@ -38,8 +38,6 @@ public class HomeActivity extends Activity {
 	 private RectF rect;
 	 private LinearLayout linearLayout2;
 	 
-	 
-
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -48,8 +46,8 @@ public class HomeActivity extends Activity {
 	    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 	    
 	    
-	    barcodeDataInputField = (EditText) findViewById(R.id.barcodeData);
-	    generateBtn = (Button) findViewById(R.id.generateBtn);
+	  //  barcodeDataInputField = (EditText) findViewById(R.id.barcodeData);
+	//    generateBtn = (Button) findViewById(R.id.generateBtn);
 	    linearLayout2 = (LinearLayout) findViewById(R.id.linearLayout2);
 	    surfaceView = (SurfaceView)findViewById(R.id.surfaceView1);
 	    surfaceHolder = surfaceView.getHolder();
@@ -59,21 +57,27 @@ public class HomeActivity extends Activity {
 //	    generateBarcode();
 	    
 	    
-	    generateBtn.setOnClickListener(new OnClickListener(){
+	    
+	    data = MainActivity.TAG;
+		System.out.println("data is "+data);
+//		surfaceHolder.removeCallback(callback);
+		linearLayout2.removeView(surfaceView);
+		generateBarcode();
+		linearLayout2.addView(surfaceView, 0);	
+		
+	   /* generateBtn.setOnClickListener(new OnClickListener(){
 	    	
 	    	public void onClick(View arg0) {
 	    		
-	    		data = barcodeDataInputField.getText().toString();
-	    		System.out.println(data);
+	    		//data = barcodeDataInputField.getText().toString();
+	    		data = MainActivity.TAG;
+	    		System.out.println("data is "+data);
 //	    		surfaceHolder.removeCallback(callback);
 	    		linearLayout2.removeView(surfaceView);
 	    		generateBarcode();
-	    		
-	    		linearLayout2.addView(surfaceView, 0);
-	    		
-	    		
+	    		linearLayout2.addView(surfaceView, 0);	
 	    	}
-	    });
+	    });*/
 
 	}
 	
