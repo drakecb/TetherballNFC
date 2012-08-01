@@ -10,30 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-
+
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:columnCount="2" >
 
-            <EditText
-                android:id="@+id/barcodeData"
-                android:layout_width="209dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill_horizontal"
-                android:ems="7"
-                android:inputType="number" >
-
-                <requestFocus
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </EditText>
-
-            <Button
-                android:id="@+id/generateBtn"
-                android:layout_width="wrap_content"
-                android:layout_gravity="right"
-                android:minWidth="100dip"
-                android:text="@string/generate" />
         </GridLayout>
 
         <LinearLayout

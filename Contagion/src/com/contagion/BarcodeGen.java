@@ -29,7 +29,6 @@ public class BarcodeGen extends View
 		super(context, attrs, defStyle);
 	}
 	
-	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
