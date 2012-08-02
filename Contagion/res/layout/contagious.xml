@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:checkedButton="@+id/radioButton1" >
+            android:checkedButton="@+id/radioButton1">
 
             <RadioButton
                 android:id="@+id/radioButton1"
@@ -65,7 +65,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/radioButton3" />
         </RadioGroup>
-
+
         <TextView
             android:id="@+id/ndefTextView"
             android:layout_width="wrap_content"

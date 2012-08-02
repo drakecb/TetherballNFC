@@ -19,11 +19,16 @@ public class ContagiousActivity extends Activity{
 	private TextView textView;
 	private RadioGroup couponSelector;
 	private RadioButton currentCoupon;
-	private NdefRecord uriRecord; 	
 	private NdefMessage ndefMessage;
-	//	private String data;
+	private NdefRecord uriRecord;
+	private String DATA;
+
 
 	@Override
+	
+	//Allows for phone-to-phone transfers via "BEAM" [Host phone performs functions of an NFC Tag]
+	//Currently, changes to the RadioGroup selection are only recognized by switching to the Home Activity and back to Contagious Activity
+	//This problem will resolve upon findiing a method to "force" and Activity-wide refresh w/out recreating it
 	public void onCreate(Bundle savedState) {
 		super.onCreate(savedState);
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -32,29 +37,7 @@ public class ContagiousActivity extends Activity{
 		textView = (TextView) findViewById(R.id.ndefTextView);
 		couponSelector = (RadioGroup) findViewById(R.id.radioGroup);
 		currentCoupon = (RadioButton) findViewById(couponSelector.getCheckedRadioButtonId());
-		uriRecord = NdefRecord.createUri(currentCoupon.getText().toString());
-
-		//      
-		// Create an NDEF message with some sample text
-		try {
-			ndefMessage = new NdefMessage(uriRecord.toByteArray());
-		} catch (FormatException e) {
-			e.printStackTrace();
-		}
-		
-		
-		couponSelector.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			public void onCheckedChanged(RadioGroup rg, int checkedId) {
-				currentCoupon = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
-				uriRecord = NdefRecord.createUri(currentCoupon.getText().toString());
-				try {
-					ndefMessage = new NdefMessage(uriRecord.toByteArray());
-				} catch (FormatException e) {
-					e.printStackTrace();
-				}
-
-			}
-		});
+		DATA = new String(currentCoupon.getText().toString());
 
 		if (nfcAdapter != null) {
 			textView.setText("Tap another Android phone with NFC to push 'NDEF Push Sample'");
@@ -62,28 +45,44 @@ public class ContagiousActivity extends Activity{
 			textView.setText("This phone is not NFC enabled.");
 		}
 
-		//        NdefRecord uriRecord = new NdefRecord(
-		//        	    NdefRecord.TNF_WELL_KNOWN,
-		//        	    NdefRecord.RTD_URI, NdefRecord.getId(),"http://www.tetherball360.com"".getBytes(Charset.forName("US-ASCII));
 
-		//        NdefRecord uriRecord = NdefRecord.createUri("http://www.tetherball360.com");
+		couponSelector.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			public void onCheckedChanged(RadioGroup rg, int checkedId) {
+				currentCoupon = (RadioButton) rg.findViewById(checkedId);
+				DATA = currentCoupon.getText().toString();
 
-		//        new NdefRecord[] { newTextRecord("7654321", Locale.ENGLISH, true)});        
+			}
+		});  
+		
 	}
-
+	//Resume occurs after the activity is started AND after the devices "BEAM"
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (nfcAdapter != null) nfcAdapter.setNdefPushMessage(ndefMessage, this); //(this, ndefMessage);
-
+		
+		
+		//If a NFC connectinon has been made, the URI String within "DATA" is transferred 
+		if (nfcAdapter != null) nfcAdapter.setNdefPushMessage(newNdefMessage(), this); 
+		
 	}
 
-
+	//Pause occurs when devices prepare to "BEAM"
 	@Override
 	public void onPause() {
 		super.onPause();
-		//        if (nfcAdapter != null) nfcAdapter.disableForegroundNdefPush(this);
+		//Save states between activities
 	}
+
+	
+	public void onStop(){
+		//Short-Term Data Caching [save states between uses]
+	}
+	
+	public void onDestroy(){
+		//Long-Term Data Caching [coupons, user data, etc...]
+	}
+
+
 
 
 	public static NdefRecord newTextRecord(String text, Locale locale, boolean encodeInUtf8) {
@@ -103,6 +102,18 @@ public class ContagiousActivity extends Activity{
 		return new NdefRecord(NdefRecord.TNF_WELL_KNOWN, NdefRecord.RTD_TEXT, new byte[0], data);
 	}
 
+	public NdefMessage newNdefMessage(){
+		currentCoupon = (RadioButton) findViewById(couponSelector.getCheckedRadioButtonId());
+		uriRecord = NdefRecord.createUri(DATA);
+
+		// Create an NDEF message with some sample text
+		try {
+			ndefMessage = new NdefMessage(uriRecord.toByteArray());
+		} catch (FormatException e) {
+			e.printStackTrace();
+		}
+		return ndefMessage;
+	}
 	//	
 	//	public void onCreate(Bundle savedInstanceState) {
 	//		super.onCreate(savedInstanceState);
