@@ -26,10 +26,10 @@
 				<category android:name="android.intent.category.DEFAULT" />           
              </intent-filter>
 			 
-            <intent-filter>
+                 <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>  
 			
         </activity>
         <activity
@@ -38,9 +38,8 @@
         <activity android:name="ContagiousActivity" >
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
+                
                 <data
                     android:host="developer.android.com"
                     android:pathPrefix="/index.html"

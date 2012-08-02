@@ -119,7 +119,6 @@ public class HomeActivity extends Activity {
 
 			}
 		});
-		
 		System.out.println("Exitss:\tGENERATE_BARCODE");
 	}
 	
