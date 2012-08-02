@@ -3,16 +3,18 @@
     <string name="app_name">Contagion</string>
     
     <string name="menu_settings">Settings</string>
-    <string name="home_title">[Home Title]!</string>
+    <string name="home_title">Coupon Catcher</string>
     <string name="home_welcome_message">[Home Welcome Message]!</string>
     <string name="home_list">[Home Title]!</string>
-    <string name="contagious_title">[Contagious Title]</string>
+    <string name="contagious_title">Discount Spreader</string>
     <string name="barcode_gen_title">[Barcode Gen View Title]</string>
     <string name="generate">generate</string>
+    
     <string name="textView2">Please select the coupon which you want to share with:</string>
-    <string name="radioButton1">Coupon 1</string>
-    <string name="radioButton2">Coupon 2</string>
-    <string name="radioButton3">Coupon 3</string>
+    <string name="radioButton1">sms:474992?body=Tetherball LLC SMS TEST!</string>    
+    <string name="radioButton2">8765432</string>
+    <string name="radioButton3">http://tetherball360.com/</string>
+    <string name="ndefTextView">Spread these Contagious amongst your Friends!</string>
     <string name="shareButton">Share</string>
     
 

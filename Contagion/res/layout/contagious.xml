@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
@@ -16,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-      <!--  <Button
+        <!--
+            <Button
             android:id="@+id/shareButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +23,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="17dp"
             android:layout_marginRight="25dp"
-            android:text="@string/shareButton" />
+            android:text="@string/shareButton" />
+        -->
 
         <TextView
             android:id="@+id/textView2"
@@ -35,47 +35,52 @@
             android:layout_marginLeft="28dp"
             android:text="@string/textView2"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="45dp"
-            android:text="@string/radioButton1" />
+            android:checkedButton="@+id/radioButton1" >
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/radioButton1"
-            android:layout_below="@+id/radioButton1"
-            android:layout_marginTop="36dp"
-            android:text="@string/radioButton2" />
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:text="@string/radioButton1" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/radioButton2"
-            android:layout_below="@+id/radioButton2"
-            android:layout_marginTop="20dp"
-            android:text="@string/radioButton3" />
--->
-        <TextView            
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/radioButton2" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/radioButton3" />
+        </RadioGroup>
+
+        <TextView
             android:id="@+id/ndefTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"
+            android:layout_centerHorizontal="true"
             android:gravity="center_vertical|center_horizontal"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="TEST NDEF!"/>
-            <!-- android:layout_alignLeft="@+id/textView2"
+            android:text="@string/ndefTextView"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <!--
+            android:layout_alignLeft="@+id/textView2"
             android:layout_below="@+id/radioButton3"
-            android:text="TEST NDEF"-->
-            
-            
-            
+            android:text="TEST NDEF"
+        -->
 
     </RelativeLayout>
 
