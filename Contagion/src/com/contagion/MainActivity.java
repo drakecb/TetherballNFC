@@ -5,11 +5,9 @@ import java.nio.charset.Charset;
 
 import android.annotation.SuppressLint;
 import android.app.TabActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
-import android.nfc.NfcManager;
 import android.nfc.Tag;
 import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
@@ -43,14 +41,7 @@ public class MainActivity extends TabActivity{
 			setContentView(R.layout.main);			
 			TabHost tabHost = getTabHost();
 						
-			 NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter();
-		     Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
-		     if(tag!=null) System.out.println("the tag is not null");
-		     try {
-					TAG = readTag(tag);
-		     } catch (Exception e) {
-					e.printStackTrace();
-				}
+		  
 			
 			// Tab for Home
 			TabSpec homeSpec = tabHost.newTabSpec(getString(R.string.home_title));
@@ -72,6 +63,17 @@ public class MainActivity extends TabActivity{
 			tabHost.addTab(contagiousSpec);//Adding Find-Seat tab
 		}
 		
+		@Override
+		protected void onResume() {
+			super.onResume();
+			   Tag tag = getIntent().getParcelableExtra(NfcAdapter.EXTRA_TAG);
+			     System.out.println(tag!=null ? "tag NOT null" : "tag NULL!");
+			     try {
+						TAG = readTag(tag);
+			     } catch (Exception e) {
+						e.printStackTrace();
+					}
+		}
 		@SuppressLint({ "NewApi", "NewApi", "NewApi", "NewApi" })
 		public String readTag(Tag tag) throws IOException {
 	        MifareUltralight mifare = MifareUltralight.get(tag);
@@ -80,7 +82,7 @@ public class MainActivity extends TabActivity{
 					byte[] payload = mifare.readPages(4);
 					String s =  new String(payload, Charset.forName("ASCII"));
 					s = s.substring(9,16);
-					//System.out.println(s);
+					System.out.println("READS TAG");
 					return s;
 	        	} catch (IOException e) {
 	        }
@@ -95,7 +97,11 @@ public class MainActivity extends TabActivity{
 	        return null;
 	    }	
 
-
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
 	//	private boolean first_time_check() {
 	        /* 
 	         * Checking Shared Preferences if the user had pressed 

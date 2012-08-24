@@ -20,28 +20,54 @@
         <activity
             android:name="MainActivity"
             android:label="@string/app_name" >
+<!-- <<<<<<< HEAD -->
 			<!-- 
+=======
+			
+>>>>>>> origin/xcc
 			<intent-filter>
 				 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 				<category android:name="android.intent.category.DEFAULT" />           
              </intent-filter>
+<<<<<<< HEAD
 			 -->
+	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/
             </intent-filter>
             <intent-filter >
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
+<!--=======
+			 
+                 <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>  
+>>>>>>> origin/xcc -->
 			
         </activity>
         <activity
             android:name="HomeActivity"
             android:screenOrientation="portrait" />
-        
-        <activity android:name="ContagiousActivity" />
-        
+                 
+            
+		
+
+        <activity android:name="ContagiousActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                
+                <data
+                    android:host="developer.android.com"
+                    android:pathPrefix="/index.html"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>    
     </application>
 
 </manifest>

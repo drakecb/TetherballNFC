@@ -29,8 +29,8 @@ public class ContagiousActivity extends Activity{
 	//Allows for phone-to-phone transfers via "BEAM" [Host phone performs functions of an NFC Tag]
 	//Currently, changes to the RadioGroup selection are only recognized by switching to the Home Activity and back to Contagious Activity
 	//This problem will resolve upon findiing a method to "force" and Activity-wide refresh w/out recreating it
-	public void onCreate(Bundle savedState) {
-		super.onCreate(savedState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
 		setContentView(R.layout.contagious);
@@ -76,10 +76,12 @@ public class ContagiousActivity extends Activity{
 	
 	public void onStop(){
 		//Short-Term Data Caching [save states between uses]
+		super.onStop();
 	}
 	
 	public void onDestroy(){
 		//Long-Term Data Caching [coupons, user data, etc...]
+		super.onDestroy();
 	}
 
 
